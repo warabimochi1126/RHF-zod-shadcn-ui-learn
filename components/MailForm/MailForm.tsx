@@ -4,13 +4,23 @@ import React from 'react'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
+import { useForm } from 'react-hook-form';
 
 const MailForm = () => {
+    const form = useForm();
+
+  function onSubmit(values: any) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values);
+  }
+  
+
   return (
-    <Form>
-    <form onSubmit={() => {}} className="space-y-8">
+    <Form {...form}>
+    <form onSubmit={() => {form.handleSubmit(onSubmit)}} className="container flex flex-col gap-3">
       <FormField
-        // control={form.control}
+        control={form.control}
         name="username"
         render={({ field }) => (
           <FormItem>
