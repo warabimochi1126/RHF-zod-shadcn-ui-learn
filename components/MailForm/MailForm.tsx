@@ -8,24 +8,10 @@ import { useForm } from 'react-hook-form';
 import { formSchema } from '@/lib/formSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Textarea } from '../ui/textarea';
+import { useMailForm } from '@/hooks/useMailForm';
 
 const MailForm = () => {
-    const form = useForm({
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        username: "",
-        subject: "",
-        email: "",
-        content: ""
-      }
-    });
-
-  function onSubmit(values: any) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
-  
+  const { form, onSubmit } = useMailForm();
 
   return (
     <Form {...form}>
