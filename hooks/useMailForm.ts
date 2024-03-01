@@ -1,5 +1,6 @@
 import { formSchema } from "@/lib/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 
 export const useMailForm = () => {
@@ -13,11 +14,10 @@ export const useMailForm = () => {
         }
       });
     
-    const onSubmit = (values: any) => {
-      // Do something with the form values.
-      // ✅ This will be type-safe and validated.
-      console.log(values);
-    }
+    
+    const onSubmit = useCallback((values: any) => {
+        console.log(values);
+    }, []);
 
     return { form, onSubmit };
 }
