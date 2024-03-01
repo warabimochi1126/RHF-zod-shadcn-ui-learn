@@ -4,16 +4,19 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST() {
+export async function POST(request: Request) {
+    const { username, subject, email, content } = await request.json();
+
+
     try {
         const { data, error } = await resend.emails.send({
             from:  'Acme <onboarding@resend.dev>',
             to: ["satomi920003@yahoo.co.jp"],
-            subject: "フォーム開発相談",
+            subject: subject,
             react: EmailTemplate({ 
-                username: "testUser", 
-                email: "test@gmail.com",
-                content: "フォーム開発のご相談です。" 
+                username, 
+                email,
+                content
             }) as React.ReactElement
         });
 
