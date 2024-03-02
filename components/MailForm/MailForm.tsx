@@ -9,6 +9,7 @@ import { formSchema } from '@/lib/formSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Textarea } from '../ui/textarea';
 import { useMailForm } from '@/hooks/useMailForm';
+import { ClipLoader } from 'react-spinners';
 
 const MailForm = () => {
   const { form, onSubmit } = useMailForm();
@@ -88,7 +89,9 @@ const MailForm = () => {
         )}
       />
 
-      <Button type="submit">Submit</Button>
+      <Button type="submit" disabled={form.formState.isSubmitting}>
+        { form.formState.isSubmitting ? <ClipLoader /> : "送信" }
+      </Button>
     </form>
   </Form>
 
